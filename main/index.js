@@ -1,5 +1,6 @@
 // Packages
 const { app, Tray } = require("electron");
+const isDev = require("electron-is-dev");
 const prepareNext = require("electron-next");
 const { resolve } = require("app-root-path");
 
@@ -9,6 +10,10 @@ const { mainWindow } = require("./windows/main");
 
 // Utilities
 const toggleWindow = require("./utils/toggle");
+
+if (isDev && process.platform === "darwin") {
+  app.dock.hide();
+}
 
 // Prepare the renderer once the app is ready
 app.on("ready", async () => {
@@ -29,12 +34,19 @@ app.on("ready", async () => {
     toggleWindow(event || null, windows.main, tray);
   };
 
+  // Only allow one instance of Now running
+  // at the same time
+  const shouldQuit = app.makeSingleInstance(toggleActivity);
+
+  if (shouldQuit) {
+    // We're using `exit` because `quit` didn't work
+    // on Windows (tested by matheuss)
+    return app.exit();
+  }
+
   if (!main.isVisible()) {
     main.once("ready-to-show", toggleActivity);
   }
 
   tray.on("click", toggleActivity);
 });
-
-// Quit the app once all windows are closed
-app.on("window-all-closed", app.quit);

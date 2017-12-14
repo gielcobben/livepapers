@@ -7,6 +7,7 @@ const isDev = require("electron-is-dev");
 const { resolve } = require("app-root-path");
 
 // Utilities
+const attachTrayState = require("../utils/highlight");
 const positionWindow = require("../utils/position");
 
 // Check if Windows
@@ -40,6 +41,7 @@ exports.mainWindow = tray => {
   win.toggleDevTools();
 
   positionWindow(tray, win);
+  attachTrayState(win, tray);
 
   const devPath = "http://localhost:8000/tray";
 
