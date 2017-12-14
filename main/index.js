@@ -34,7 +34,7 @@ app.on("ready", async () => {
     toggleWindow(event || null, windows.main, tray);
   };
 
-  // Only allow one instance of Now running
+  // Only allow one instance of Livepapers running
   // at the same time
   const shouldQuit = app.makeSingleInstance(toggleActivity);
 
