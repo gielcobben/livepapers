@@ -1,0 +1,11 @@
+# build output
+dist
+renderer/.next
+renderer/out
+renderer/static/videos
+
+# dependencies
+node_modules
+
+# logs
+npm-debug.log
