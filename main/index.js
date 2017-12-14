@@ -1,46 +1,40 @@
-// Native
-const { format } = require("url");
-
 // Packages
-const electron = require("electron");
-const { BrowserWindow, app } = require("electron");
-const isDev = require("electron-is-dev");
+const { app, Tray } = require("electron");
 const prepareNext = require("electron-next");
 const { resolve } = require("app-root-path");
+
+// Windows
+const { wallpaperWindow } = require("./windows/wallpaper");
+const { mainWindow } = require("./windows/main");
+
+// Utilities
+const toggleWindow = require("./utils/toggle");
 
 // Prepare the renderer once the app is ready
 app.on("ready", async () => {
   await prepareNext("./renderer");
+  const tray = new Tray(resolve(`./main/static/icon-white.png`));
 
-  const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
+  const windows = {
+    wallpaper: wallpaperWindow(),
+    main: mainWindow(tray),
+  };
 
-  const mainWindow = new BrowserWindow({
-    x: -100,
-    y: -100,
-    width: width + 200,
-    height: height + 200,
-    type: "desktop",
-    titleBarStyle: "hidden",
-    center: true,
-    enableLargerThanScreen: true,
-  });
+  const main = windows.main;
 
-  // mainWindow.toggleDevTools();
+  global.windows = windows;
+  global.tray = tray;
 
-  const devPath = "http://localhost:8000/start";
+  const toggleActivity = async event => {
+    toggleWindow(event || null, windows.main, tray);
+  };
 
-  const prodPath = format({
-    pathname: resolve("renderer/out/start/index.html"),
-    protocol: "file:",
-    slashes: true,
-  });
+  if (!main.isVisible()) {
+    main.once("ready-to-show", toggleActivity);
+  }
 
-  const url = isDev ? devPath : prodPath;
-  mainWindow.loadURL(url);
+  tray.on("click", toggleActivity);
 });
-
-// Hide dock icon
-app.dock.hide();
 
 // Quit the app once all windows are closed
 app.on("window-all-closed", app.quit);

@@ -2,7 +2,7 @@ export default () => (
   <div>
     <video autoPlay loop>
       <source
-        src="/static/comp_DB_D011_D009_SIGNCMP_v15_6Mbps.mp4"
+        src="/static/videos/comp_DB_D011_D009_SIGNCMP_v15_6Mbps.mp4"
         type="video/mp4"
       />
     </video>

@@ -11,11 +11,7 @@
     "dist": "npm run build && build --dir"
   },
   "build": {
-    "files": [
-      "**/*",
-      "!renderer",
-      "renderer/out"
-    ]
+    "files": ["**/*", "!renderer", "renderer/out"]
   },
   "devDependencies": {
     "electron": "1.7.5",
@@ -27,6 +23,7 @@
   "dependencies": {
     "app-root-path": "2.0.1",
     "electron-is-dev": "0.3.0",
-    "electron-next": "3.1.1"
+    "electron-next": "3.1.1",
+    "just-compare": "^1.2.1"
   }
 }
