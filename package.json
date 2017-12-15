@@ -34,6 +34,8 @@
     "app-root-path": "2.0.1",
     "electron-is-dev": "0.3.0",
     "electron-next": "3.1.1",
+    "first-run": "^1.2.0",
+    "isomorphic-fetch": "^2.2.1",
     "just-compare": "^1.2.1"
   }
 }

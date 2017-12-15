@@ -8,15 +8,26 @@ const { resolve } = require("app-root-path");
 
 exports.wallpaperWindow = () => {
   const { width, height } = electron.screen.getPrimaryDisplay().workAreaSize;
+
   const win = new electron.BrowserWindow({
     x: -100,
     y: -100,
     width: width + 200,
     height: height + 200,
     type: "desktop",
-    titleBarStyle: "hidden",
-    center: true,
+    resizable: false,
+    show: false,
+    fullscreenable: false,
+    maximizable: false,
+    minimizable: false,
+    transparent: true,
+    frame: false,
+    movable: false,
     enableLargerThanScreen: true,
+    webPreferences: {
+      backgroundThrottling: false,
+      devTools: true,
+    },
   });
 
   const devPath = "http://localhost:8000/wallpaper";

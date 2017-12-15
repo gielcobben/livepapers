@@ -2,14 +2,15 @@ import css from "styled-jsx/css";
 
 export default css`
   html {
-    font-family: sans-serif;
-    -ms-text-size-adjust: 100%;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     -webkit-text-size-adjust: 100%;
   }
 
   body {
     margin: 0;
-    line-height: 1.6;
+    line-height: 1.4;
   }
 
   a {
@@ -100,6 +101,8 @@ export default css`
   }
 
   * {
+    user-select: none;
+    cursor: default;
     box-sizing: inherit;
   }
 
@@ -113,12 +116,16 @@ export default css`
 
   body {
     color: hsla(0, 0%, 0%, 0.8);
-    font-family: sans-serif;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+      Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
+      "Segoe UI Symbol";
     font-weight: normal;
     word-wrap: break-word;
     font-kerning: normal;
     -webkit-font-feature-settings: "kern", "liga", "clig", "calt";
     font-feature-settings: "kern", "liga", "clig", "calt";
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
   }
 
   img {
@@ -181,9 +188,5 @@ export default css`
 
   p *:last-child {
     margin-bottom: 0;
-  }
-
-  li > p {
-    margin-bottom: calc(1.45rem / 2);
   }
 `;

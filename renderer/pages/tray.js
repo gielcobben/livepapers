@@ -13,6 +13,7 @@ class Tray extends React.Component {
 
     this.isWindows = os.platform() === "win32";
   }
+
   render() {
     return (
       <Layout>

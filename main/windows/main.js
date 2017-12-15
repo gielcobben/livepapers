@@ -52,7 +52,7 @@ exports.mainWindow = tray => {
   const url = isDev ? devPath : prodPath;
   win.loadURL(url);
 
-  win.toggleDevTools();
+  // win.toggleDevTools();
 
   // Hide window if it's not focused anymore
   // This can only happen if the dev tools are not open

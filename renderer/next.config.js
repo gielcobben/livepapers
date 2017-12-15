@@ -10,6 +10,7 @@ module.exports = {
     return {
       "/wallpaper": { page: "/wallpaper" },
       "/tray": { page: "/tray" },
+      "/welcome": { page: "/welcome" },
     };
   },
 };
