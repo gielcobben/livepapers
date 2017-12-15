@@ -16,15 +16,11 @@ const windowLeft = win => {
     return false;
   }
 
-  if (
-    windows.tutorial &&
-    windows.about === win &&
-    windows.tutorial.isVisible()
-  ) {
+  if (windows.welcome && windows.about === win && windows.welcome.isVisible()) {
     return true;
   }
 
-  if (windows.about && windows.tutorial === win && windows.about.isVisible()) {
+  if (windows.about && windows.welcome === win && windows.about.isVisible()) {
     return true;
   }
 

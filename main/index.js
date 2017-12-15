@@ -11,6 +11,7 @@ const { mainWindow } = require("./windows/main");
 // Utilities
 const toggleWindow = require("./utils/toggle");
 
+// Hide the dock icon
 if (isDev && process.platform === "darwin") {
   app.dock.hide();
 }
@@ -34,19 +35,17 @@ app.on("ready", async () => {
     toggleWindow(event || null, windows.main, tray);
   };
 
-  // Only allow one instance of Livepapers running
-  // at the same time
+  // Only allow one instance of Livepapers running at the same time
   const shouldQuit = app.makeSingleInstance(toggleActivity);
 
   if (shouldQuit) {
-    // We're using `exit` because `quit` didn't work
-    // on Windows (tested by matheuss)
+    // We're using `exit` because `quit` didn't work on Windows
     return app.exit();
   }
 
-  if (!main.isVisible()) {
-    main.once("ready-to-show", toggleActivity);
-  }
+  // if (!main.isVisible()) {
+  //   main.once("ready-to-show", toggleActivity);
+  // }
 
   tray.on("click", toggleActivity);
 });

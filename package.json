@@ -1,24 +1,34 @@
 {
-  "name": "electron-next-skeleton",
-  "productName": "ElectronNext",
+  "name": "caption",
+  "description": "Live wallpapers",
+  "author": {
+    "name": "Giel Cobben",
+    "email": "g.cobben@gmail.com",
+    "url": "https://gielcobben.com"
+  },
+  "productName": "Livepapers",
   "version": "1.0.0",
   "main": "main/index.js",
   "license": "MIT",
-  "repository": "leo/electron-next-skeleton",
+  "repository": "gielcobben/livepapers",
   "scripts": {
     "start": "electron .",
     "build": "next build renderer && next export renderer",
     "dist": "npm run build && build --dir"
   },
   "build": {
-    "files": ["**/*", "!renderer", "renderer/out"]
+    "files": [
+      "**/*",
+      "!renderer",
+      "renderer/out"
+    ]
   },
   "devDependencies": {
-    "electron": "1.7.5",
-    "electron-builder": "19.22.1",
-    "next": "3.0.6",
-    "react": "15.6.1",
-    "react-dom": "15.6.1"
+    "electron": "latest",
+    "electron-builder": "^19.37.2",
+    "next": "4.1.0",
+    "react": "16.0.0",
+    "react-dom": "16.0.0"
   },
   "dependencies": {
     "app-root-path": "2.0.1",
